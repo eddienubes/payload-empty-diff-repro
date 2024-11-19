@@ -1,0 +1,16 @@
+services:
+  mydb-pg:
+    image: postgres:14.12-alpine
+    container_name: mydb-pg
+    restart: no
+    healthcheck:
+      test: "psql -U root mydb -c ''"
+      interval: 5s
+      timeout: 5s
+      retries: 3
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 123123
+      POSTGRES_DB: mydb
